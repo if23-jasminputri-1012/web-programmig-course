@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Document</title>
 </head>
 <body>
@@ -12,6 +13,5 @@
         <input type="password" name="password" placeholder="masukkan password anda">
         <input type="submit" value="login" name="submit">
     </form>
-
 </body>
 </html>
