@@ -2,7 +2,7 @@
 
 require './../config/db.php';
 
-if(isset($_POST['submit'])) {
+if (isset($_POST['submit'])) {
     global $db_connect;
 
     $name = $_POST['name'];
@@ -10,18 +10,20 @@ if(isset($_POST['submit'])) {
     $image = $_FILES['image']['name'];
     $tempImage = $_FILES['image']['tmp_name'];
 
-    $randomFilename = time().'-'.md5(rand()).'-'.$image;
+    $randomFilename = time() . '-' . md5(rand()) . '-' . $image;
 
-    $uploadPath = $_SERVER['DOCUMENT_ROOT'].'/upload/'.$randomFilename;
+    $uploadPath = $_SERVER['DOCUMENT_ROOT'] . '/upload/' . $randomFilename;
 
-    $upload = move_uploaded_file($tempImage,$uploadPath);
+    $upload = move_uploaded_file($tempImage, $uploadPath);
 
-    if($upload) {
-        mysqli_query($db_connect,"INSERT INTO products (name,price,image)
-                    VALUES ('$name','$price','/upload/$randomFilename')");
-        echo "berhasil upload";
+    if ($upload) {
+        $query = "INSERT INTO products (name, price, image) VALUES ('$name', '$price', '/upload/$randomFilename')";
+        mysqli_query($db_connect, $query);
+        
+        // Redirect ke halaman sukses
+        header("Location: ../success.php?name=" . urlencode($name));
+        exit();
     } else {
-        echo "gagal upload";
+        echo "Gagal mengunggah produk. Coba lagi.";
     }
-
 }

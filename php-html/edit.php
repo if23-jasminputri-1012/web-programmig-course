@@ -27,21 +27,28 @@ if (isset($_POST['update'])) {
 <head>
     <meta charset="UTF-8">
     <title>Edit Produk</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Edit Produk</h1>
-    <form method="post">
-        <label>Nama Produk:</label>
-        <input type="text" name="name" value="<?= $row['name']; ?>" required><br><br>
+    <div class="container mt-5">
+        <h1 class="text-center">Edit Produk</h1>
+        <form method="post" class="mt-4">
+            <div class="mb-3">
+                <label for="name" class="form-label">Nama Produk:</label>
+                <input type="text" id="name" name="name" class="form-control" value="<?= $row['name']; ?>" required>
+            </div>
+            <div class="mb-3">
+                <label for="price" class="form-label">Harga:</label>
+                <input type="text" id="price" name="price" class="form-control" value="<?= $row['price']; ?>" required>
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Gambar URL:</label>
+                <input type="text" id="image" name="image" class="form-control" value="<?= $row['image']; ?>">
+            </div>
+            <button type="submit" name="update" class="btn btn-success">Update</button>
+            <a href="index.php" class="btn btn-secondary">Kembali</a>
+        </form>
+    </div>
 
-        <label>Harga:</label>
-        <input type="text" name="price" value="<?= $row['price']; ?>" required><br><br>
-
-        <label>Gambar URL:</label>
-        <input type="text" name="image" value="<?= $row['image']; ?>"><br><br>
-
-        <button type="submit" name="update">Update</button>
-    </form>
-    <a href="index.php">Kembali ke Data Produk</a>
 </body>
 </html>
